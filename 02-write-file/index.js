@@ -14,16 +14,12 @@ const setFinalMessage = () => {
   process.exit();
 };
 
-fs.appendFile(path.join(__dirname, '02-write-file.txt'), '', (err) => {
-  if (err) throw err;
-});
+fs.appendFile(path.join(__dirname, '02-write-file.txt'), '', () => {});
 
 stdout.write('Write your text\n');
 stdin.on('data', (data) => {
   dataText += data.toString();
-  fs.writeFile(path.join(__dirname, '02-write-file.txt'), dataText, (err) => {
-    if (err) throw err;
-  });
+  fs.writeFile(path.join(__dirname, '02-write-file.txt'), dataText, () => {});
 });
 
 process.on('SIGINT', setFinalMessage);
